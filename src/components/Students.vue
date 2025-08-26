@@ -1,38 +1,54 @@
 <template>
-  <h1>YAWAAAAA</h1>
-  <div>
+  <section>
+    <h2>Students</h2>
+    <ul>
+      <li v-for="(n, idx) in names" :key="'n-'+idx">{{ n }}</li>
+    </ul>
+
+    <div style="margin: 12px 0;">
+      <button @click="showList = !showList">
+        {{ showList ? "Hide" : "Show" }} Detailed List
+      </button>
+    </div>
+
     <ul v-if="showList">
-      <li v-for="(student, index) in students" :key="index"
-          :class="{ highlight: student.score >= 90 }">
-        {{ student.name }} - {{ student.score }}
+      <li
+        v-for="(s, idx) in students"
+        :key="'s-'+idx"
+        :class="{ highlight: s.score >= 90 }"
+      >
+        {{ s.name }} — Score: {{ s.score }}
       </li>
     </ul>
-    <p>Passing Students: {{ passingStudents }}</p>
-  </div>
+
+    <p>Passing Students: {{ passingCount }}</p>
+  </section>
 </template>
 
 <script>
 export default {
-  name: 'StudentList',
+  name: "StudentList",
   data() {
     return {
+      names: ["Megs", "Mayang", "Eunilyn"],
+
       showList: true,
       students: [
-        { name: 'Megs', score: 85 },
-        { name: 'Euns', score: 65 },
-        { name: 'Mayang', score: 90 }
-      ]
-    }
+        { name: "Megs",   score: 90 },
+        { name: "Mayang",     score: 100 },
+        { name: "Eunilyn", score: 60 },
+      ],
+    };
   },
   computed: {
-    passingStudents() {
-      return this.students.filter(student => student.score > 70).length;
-    }
-  }
-}
+    passingCount() {
+      return this.students.filter(s => s.score >= 70).length;
+    },
+  },
+};
 </script>
 
-<style scoped>
+<style>
 .highlight {
   color: green;
   font-weight: bold;
