@@ -1,3 +1,3 @@
-export function isPassing(score) {
-  return score >= 50
+export function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
