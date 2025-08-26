@@ -1,19 +1,26 @@
 <template>
-  <div id="app">
-    <Greeting username="John" />
+  <main>
+    <h1>Prelim Vue Exam</h1>
+
+    <Greeting :username="user" />
+
+    <hr style="margin: 24px 0;" />
+
     <Students />
-  </div>
+  </main>
 </template>
 
 <script>
-import Greeting from './components/Greeting.vue';
-import Students from './components/Students.vue';
+import Greeting from "./components/Greeting.vue";
+import Students from "./components/Students.vue";
 
 export default {
-  name: 'App',
-  components: {
-    Greeting,
-    Students
-  }
-}
+  name: "App",
+  components: { Greeting, Students },
+  data() {
+    return {
+      user: "Kyle Elle",
+    };
+  },
+};
 </script>
